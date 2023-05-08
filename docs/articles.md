@@ -2,12 +2,12 @@
 
 ## Creational
 
-- [10 commandments to naming and writing clean code with TypeScript.](https://albertobasalo.medium.com/10-commandments-to-naming-and-writing-clean-code-with-typescript-4d46c205a5d2?sk=cd87a76588cf3394d36c9c40e9596d78)
+- [Creational Patterns in TypeScript.](https://albertobasalo.medium.com/creational-patterns-in-typescript-fb5d57565b4e?sk=7b0e16c751fc18ebbe93393670e2053e)
 
 ## Structural
 
-- [Write Clean TypeScript with the Rule of ONE for Methods and Functions.](https://albertobasalo.medium.com/functions-rule-one-326ba019a8dd?sk=562a8aa076cb4fae1dcfdbb9a5e9a82d)
+- [Structural patterns in TypeScript.](https://albertobasalo.medium.com/structural-patterns-in-typescript-f083ee82d7fe?sk=8379e3d32c875fa1fb6a53ec382614a2)
 
 ## Behavioral
 
-- [Data models in TypeScript, from primitive obsession to clean entities.](https://albertobasalo.medium.com/evolution-of-data-models-from-primitive-to-clean-entities-in-typescript-5d45aaee0542?sk=f75f3b3c67d24762a575407784b531fb)
+- [Behavioral Patterns in TypeScript.](https://albertobasalo.medium.com/behavioral-patterns-in-typescript-b1a3787d5c34?sk=c4c813171ed688b5607dec5f0c458740)
