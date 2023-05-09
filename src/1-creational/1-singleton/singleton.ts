@@ -18,6 +18,7 @@ export class Logger {
     console.log(message);
   }
 }
+
 export class Application {
   logger = new Logger();
 
