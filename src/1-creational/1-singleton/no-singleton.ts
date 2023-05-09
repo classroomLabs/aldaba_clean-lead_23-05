@@ -1,4 +1,5 @@
 // ! ❌ Bad example not using singleton
+
 export class Logger {
   entries: string[] = [];
   constructor() {}
@@ -7,6 +8,9 @@ export class Logger {
     console.log(message);
   }
 }
+
+var logger = new Logger();
+
 export class Application {
   logger = new Logger();
 
@@ -17,6 +21,7 @@ export class Application {
     service.doSomething();
   }
 }
+
 export class Service {
   constructor(private logger: Logger) {}
   doSomething() {
@@ -25,11 +30,19 @@ export class Service {
     repository.save({ name: "" });
   }
 }
+
 export class Repository {
   // ! 😱 another instance, potentially different from the one in Application
   private logger: Logger = new Logger();
 
   save(user: { name: string }) {
     this.logger.log("Saving user..." + user);
+  }
+}
+
+export class Client {
+  constructor() {
+    // ! 😱 using a global instance,
+    logger.log("Hello world!");
   }
 }
