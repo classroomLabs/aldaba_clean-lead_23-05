@@ -1,4 +1,4 @@
-// ! ❌ Bad example not using bridge
+// ! ❌ Bad example not using bridge 1
 export class PayPal {
   pay(amount: number): string {
     console.log(`Paid ${amount} with PaymentPal`);
@@ -26,7 +26,7 @@ export class Application1 {
   }
 }
 
-// ! ❌ Bad example not using bridge
+// ! ❌ Bad example not using bridge 2
 // implicit implementor
 export class FileWriter {
   write(message: string): void {

@@ -7,6 +7,7 @@ export class Enrolment {
     return enrollment;
   }
   // ToDo: 😱 add cancellation new functionality
+  // ToDo: 😱 notify organizer in both enrolment and cancellation
 }
 
 // logging sample

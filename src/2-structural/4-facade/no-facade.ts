@@ -8,13 +8,22 @@ export class EnrolmentSystem {
       throw new Error("Too many places");
     }
     // ToDo : 🤢 too much coupling and knowledge of the subsystems
-    const payment = new Payment();
-    const enrolment = new Enrolment(payment);
+    const enrolment = new Enrolment();
     const amount = enrolment.getPrice(activityId, numPlaces);
-    const enrolmentCode = enrolment.enrol(activityId, amount, numPlaces);
+    const payment = new Payment();
+    const paymentCode = payment.pay(amount);
+    const enrolmentCode = enrolment.enrol(activityId, paymentCode, numPlaces);
     new Notification().notify(customerId);
     console.log("EnrolmentSystem: enrolment completed");
     return enrolmentCode;
+  }
+  public cancel(activityId: string, enrolmentCode: string): void {
+    // ToDo : 🤢 too much coupling and knowledge of the subsystems
+    const enrolment = new Enrolment();
+    const refundCode = enrolment.cancel(activityId, enrolmentCode);
+    const payment = new Payment();
+    payment.refund(refundCode);
+    console.log("EnrolmentSystem: enrolment cancelled");
   }
 }
 
