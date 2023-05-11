@@ -42,8 +42,11 @@ export class LoggerBuilder {
   // * 😏 ensures that you will not need to know too much about the logger
   public static build(formatter: Formatter, writer: Writer): Logger {
     if (formatter instanceof JsonFormatter && writer instanceof DatabaseWriter) {
-      // * 😏 detects incompatibility before the logger is created
-      throw "Incompatible formatter";
+      // * 😏 detects incompatibility before the logger is created and throws an error
+      // throw "Incompatible formatter";
+      // * 😏 or you can just use a default configuration
+      formatter = new SimpleFormatter();
+      writer = new ConsoleWriter();
     }
     const logger = new Logger();
     // * 😏 ensures correct order

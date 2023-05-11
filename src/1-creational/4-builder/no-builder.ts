@@ -38,3 +38,11 @@ class Application {
     // ! and do it every time you need a new instance
   }
 }
+
+class Consumer {
+  doWork() {
+    const logger = new Logger();
+    logger.setFormatter(new JsonFormatter());
+    logger.log({ message: "Hello world!" });
+  }
+}
