@@ -4,10 +4,12 @@ import { ExternalEventData, ExternalEventService } from "./external-event.librar
 export class Client {
   // ! 🤢 client classes depending on concrete implementations
   private readonly logger: ExternalEventService;
+
   constructor() {
     // ! 🤢 client classes are coupled to the library
     this.logger = new ExternalEventService();
   }
+
   public doThings() {
     // ! 🤢 client classes are coupled to the interface
     const event: ExternalEventData = {

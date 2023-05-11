@@ -18,6 +18,7 @@ export class ExternalEventService {
     eventMessage.push(header);
     return eventMessage;
   }
+
   public writeMessage(message: string[]): string {
     const eventMessage = message.join("\n");
     console.log(eventMessage);
