@@ -1,37 +1,34 @@
 // * ✅ Factory solution
-import {
-  ConsoleWriter,
-  DatabaseWriter,
-  FileWriter,
-  Logger,
-  Writer,
-} from "../../../private/1-creational/3-factory/factory.dependencies";
 
-const loggersMap = [
+import { ConsoleWriter, DatabaseWriter, FileWriter, Logger, Writer } from "./factory.dependencies";
+
+const writersCatalog = [
   {
-    name: "console",
+    id: "console",
     instance: new ConsoleWriter(),
   },
   {
-    name: "file",
+    id: "file",
     instance: new FileWriter(),
   },
   {
-    name: "database",
+    id: "database",
     instance: new DatabaseWriter(),
   },
 ];
 
-// * 😏 factory method encapsulates the logic to create the right instance
-export function createWriter(): Writer {
-  const result = loggersMap.find((logger) => logger.name === process.env.LOGGER);
-  return result?.instance || new ConsoleWriter();
+class WriterFactory {
+  // * 😏 factory method encapsulates the logic to create the right instance
+  static createWriter(): Writer {
+    const writer = writersCatalog.find((w) => w.id === process.env.WRITER);
+    return writer?.instance || new ConsoleWriter();
+  }
 }
 
 class Application {
   main() {
     // * 😏 consumer does not need to know the logic
-    const writer = createWriter();
+    const writer = WriterFactory.createWriter();
     const logger = new Logger(writer);
     logger.log("Hello world!");
   }

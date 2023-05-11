@@ -10,7 +10,7 @@ class Application {
 
     // ...😱 may have to be repeated in other places
 
-    switch (process.env.LOGGER || "console") {
+    switch (process.env.WRITER || "console") {
       case "console":
         writer = new ConsoleWriter();
         break;

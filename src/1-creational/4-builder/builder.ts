@@ -41,8 +41,10 @@ export class Logger {
 export class LoggerBuilder {
   // * 😏 ensures that you will not need to know too much about the logger
   public static build(formatter: Formatter, writer: Writer): Logger {
-    if (formatter instanceof JsonFormatter && writer instanceof DatabaseWriter) {
-      // * 😏 detects incompatibility before the logger is created and throws an error
+    const areIncompatibles = formatter instanceof JsonFormatter && writer instanceof DatabaseWriter;
+    // * 😏 detects incompatibility before the logger is created
+    if (areIncompatibles) {
+      // * 😏 and throw specific an error
       // throw "Incompatible formatter";
       // * 😏 or you can just use a default configuration
       formatter = new SimpleFormatter();
@@ -58,7 +60,7 @@ export class LoggerBuilder {
 
 // * ✅ ✅ Builder Director solution
 // * 😏 Director is an abstraction on top of the Builder
-// * gives a Catalog without knowing the internals
+// * Offers a pre-made Catalog without knowing the internals
 export class LoggerDirector {
   public static buildADefaultLogger(): Logger {
     return LoggerBuilder.build(new SimpleFormatter(), new FileWriter());
