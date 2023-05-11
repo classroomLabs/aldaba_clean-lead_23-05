@@ -1,6 +1,7 @@
 export interface Writer {
   write(message: string): void;
 }
+
 export class ConsoleWriter implements Writer {
   write(message: string) {
     console.log(message);

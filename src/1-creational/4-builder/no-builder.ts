@@ -1,4 +1,4 @@
-import { DatabaseWriter, FileWriter, Formatter, JsonFormatter, LogEntry, Writer } from "./builder.dependencies";
+import { ConsoleWriter, DatabaseWriter, Formatter, JsonFormatter, LogEntry, Writer } from "./builder.dependencies";
 
 // ! ❌ Bad example of not using a builder
 class Logger {
@@ -29,9 +29,10 @@ class Logger {
 class Application {
   main() {
     const logger = new Logger();
-    logger.setWriter(new FileWriter()); // ! 😱 throws "Need a formatter"
+    // logger.setWriter(new FileWriter()); // ! 😱 throws "Need a formatter"
     logger.setFormatter(new JsonFormatter());
-    logger.setWriter(new DatabaseWriter()); // ! 😱 throws "Incompatible formatter for this writer"
+    // logger.setWriter(new DatabaseWriter()); // ! 😱 throws "Incompatible formatter for this writer"
+    logger.setWriter(new ConsoleWriter());
     logger.log({ message: "Hello world!" });
     // ! 😱 you must remember to call the methods in the correct order,
     // ! and do it every time you need a new instance
