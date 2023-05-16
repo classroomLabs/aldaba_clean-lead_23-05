@@ -26,8 +26,8 @@ export class EnrolmentLib extends EnrolmentBase {
 }
 // * another concrete (refined) abstraction
 export class EnrolmentDiscountService extends EnrolmentBase {
-  constructor() {
-    super(new Stripe());
+  constructor(x: IPayment) {
+    super(x);
   }
   public enrol(activityPrice: number, numPlaces: number): string {
     const amount = activityPrice * numPlaces * 0.8;
