@@ -1,38 +1,25 @@
 // ! ❌ Bad example not using a command
 
-export class LightBulb {
-  private isOn = false;
-  private brightness = 0;
-
-  // 😏 a business class not aware of the command pattern
-  // nothing to see here
-
-  turnOn(brightness = 10): void {
-    this.isOn = true;
-    this.brightness = brightness;
-    console.log("Light turned on, brightness", this.brightness);
+// The receiver
+export class EnrolmentService {
+  enroll(activity: string, participant: string): void {
+    console.log(`Enrolling ${participant} in ${activity}`);
   }
 
-  turnOff(): void {
-    this.isOn = false;
-    this.brightness = 0;
-    console.log("Light turned off, brightness", this.brightness);
+  unenroll(activity: string, participant: string): void {
+    console.log(`Un-enrolling ${participant} in ${activity}`);
   }
 }
 
-export class RemoteControl {
-  // ! 😱 tight coupling with the light bulb
-  constructor(private lightBulb: LightBulb) {}
-  pressOnButton(brightness: number): void {
-    this.lightBulb.turnOn(brightness);
+// The invoker
+export class EnrolmentController {
+  private service: EnrolmentService = new EnrolmentService();
+
+  // ! 😱 tight coupling invoker and receiver
+  dispatchEnrollment(activity: string, participant: string): void {
+    this.service.enroll(activity, participant);
   }
-  pressOffButton(): void {
-    this.lightBulb.turnOff();
+  dispatchUnEnrollment(activity: string, participant: string): void {
+    this.service.unenroll(activity, participant);
   }
 }
-
-// Usage
-const lightBulb = new LightBulb();
-const remoteControl = new RemoteControl(lightBulb);
-remoteControl.pressOnButton(20); // Light turned on, brightness 20
-remoteControl.pressOffButton(); // Light turned off, brightness 0
