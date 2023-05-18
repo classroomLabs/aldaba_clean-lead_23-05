@@ -58,7 +58,6 @@ class Agency {
   }
 }
 
-// ! 😱 App is aware of Agency and Logger
 export class App {
   main() {
     const agency = new Agency();
