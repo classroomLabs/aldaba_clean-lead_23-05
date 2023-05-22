@@ -1,4 +1,4 @@
-# Clean Code Patterns course material fro ALDABA
+# Clean Code Patterns course material for ALDABA
 
 Demo project and documentation for the Clean Code course.
 
