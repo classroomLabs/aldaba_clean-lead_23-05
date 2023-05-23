@@ -1,9 +1,14 @@
 // ! ❌ Bad example not using a memento
+
+// ! 😱 want to save state of an object to undo operations deferred in time
 export class Activity {
   private title: string;
-  private attendees: string[] = [];
+  private attendeesRepository: string[] = [];
   private places: number;
-  // Suppose more state is added to the Activity class(money, date, etc.)
+  private reservedPlaces: number = 0;
+  private status: "pending" | "confirmed" = "pending";
+  private minimumAttendees: number = 3;
+  public readonly isConfirmed: boolean = this.status === "confirmed";
 
   constructor(title: string, places: number) {
     this.title = title;
@@ -11,19 +16,28 @@ export class Activity {
   }
 
   get availablePlaces(): number {
-    return this.places - this.attendees.length;
+    return this.places - this.reservedPlaces;
   }
+
   enroll(name: string): void {
-    if (this.attendees.length >= this.places) {
+    if (this.reservedPlaces >= this.places) {
       throw new Error("No more places available on " + this.title);
     }
-    this.attendees.push(name);
+    this.attendeesRepository.push(name);
+    this.reservedPlaces++;
+    if (this.reservedPlaces >= this.minimumAttendees) {
+      this.status = "confirmed";
+    }
   }
   cancel(): void {
-    // ! 😱 cancel logic is needed here
-    if (this.attendees.length === 0) {
+    // ! 😱 un do enrolment cancel logic is needed here
+    if (this.attendeesRepository.length === 0) {
       return;
     }
-    this.attendees.pop();
+    this.attendeesRepository.pop();
+    this.reservedPlaces--;
+    if (this.reservedPlaces < this.minimumAttendees) {
+      this.status = "pending";
+    }
   }
 }
