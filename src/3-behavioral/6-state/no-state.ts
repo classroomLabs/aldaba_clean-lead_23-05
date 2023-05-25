@@ -4,6 +4,7 @@ type ActivityEnrollmentStateType = "Paying" | "Booking" | "Cancelling";
 
 export class ActivityEnrollment {
   state: ActivityEnrollmentStateType = "Booking";
+
   execute(data: unknown): unknown {
     switch (this.state) {
       case "Paying":
